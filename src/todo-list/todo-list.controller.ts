@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 
 @Controller('/todo-list')
@@ -23,5 +23,11 @@ export class TodoListController {
   @Get('/')
   findAll() {
     return this.TodoListService.findAll();
+  }
+
+  // - Listar uma tarefa
+  @Get('/:id')
+  findOne(@Param('id') id: string) {
+    return this.TodoListService.findOne(id);
   }
 }

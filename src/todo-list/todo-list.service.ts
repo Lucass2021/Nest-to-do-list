@@ -28,4 +28,12 @@ export class TodoListService {
   findAll() {
     return this.taskRepository.find();
   }
+
+  findOne(id: string) {
+    return this.taskRepository.findOne({
+      where: {
+        id: Number(id),
+      },
+    });
+  }
 }
