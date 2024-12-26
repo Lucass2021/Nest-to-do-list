@@ -1,5 +1,5 @@
-npm run lint
+yarn run lint
 
 npx tsc --noEmit
 
-# npm run test
+# yarn run test
