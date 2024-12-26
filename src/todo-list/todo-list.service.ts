@@ -24,4 +24,8 @@ export class TodoListService {
 
     return await this.taskRepository.save(task);
   }
+
+  findAll() {
+    return this.taskRepository.find();
+  }
 }

@@ -1,10 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 
 @Controller('/todo-list')
 export class TodoListController {
   constructor(private readonly TodoListService: TodoListService) {}
 
+  // - Criar uma nova tarefa
   @Post('/new-task')
   async createNewItem(
     @Body('title') title: string,
@@ -16,5 +17,11 @@ export class TodoListController {
       category,
       dueDate ? new Date(dueDate) : null,
     );
+  }
+
+  // - Listar todas as tarefas
+  @Get('/')
+  findAll() {
+    return this.TodoListService.findAll();
   }
 }
