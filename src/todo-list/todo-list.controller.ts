@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 
 @Controller('/todo-list')
@@ -30,4 +30,18 @@ export class TodoListController {
   findOne(@Param('id') id: string) {
     return this.TodoListService.findOne(id);
   }
+
+  // - Atualizar o status (feito/não feito)
+  @Patch('done/:id')
+  updateTaskStatusToDone(@Param('id') id: string) {
+    return this.TodoListService.updateTaskStatusToDone(id);
+  }
+
+  // - Atualizar o status (feito/não feito)
+  @Patch('undone/:id')
+  updateTaskStatusToUndone(@Param('id') id: string) {
+    return this.TodoListService.updateTaskStatusToUndone(id);
+  }
+
+  // - Deletar uma tarefa
 }
