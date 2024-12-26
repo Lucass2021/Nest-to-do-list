@@ -47,7 +47,10 @@ export class TodoListService {
     if (!task.isDone) {
       task.isDone = true;
     }
-    return await this.taskRepository.save(task);
+    await this.taskRepository.save(task);
+    return {
+      message: 'Task updated successfully',
+    };
   }
 
   async updateTaskStatusToUndone(id: string) {
@@ -60,6 +63,24 @@ export class TodoListService {
     if (task.isDone) {
       task.isDone = false;
     }
-    return await this.taskRepository.save(task);
+    await this.taskRepository.save(task);
+    return {
+      message: 'Task updated successfully',
+    };
+  }
+
+  async deleteTask(id: string) {
+    const task = await this.taskRepository.findOne({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (task) {
+      await this.taskRepository.delete(task);
+      return {
+        message: 'Task deleted successfully',
+      };
+    }
   }
 }

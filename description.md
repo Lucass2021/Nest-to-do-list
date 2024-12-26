@@ -8,4 +8,9 @@ Rotas:
 - Atualizar o status (feito/não feito)
 - Deletar uma tarefa
 
--- Extras: Adicione categorias ou prazos para as tarefas.
+-- Extras:
+
+- Validações
+- Adicione categorias
+- Prazos para as tarefas
+- Testes Unitários

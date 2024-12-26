@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 
 @Controller('/todo-list')
@@ -44,4 +52,8 @@ export class TodoListController {
   }
 
   // - Deletar uma tarefa
+  @Delete('/:id')
+  deleteTask(@Param('id') id: string) {
+    return this.TodoListService.deleteTask(id);
+  }
 }
