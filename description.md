@@ -12,6 +12,7 @@ Rotas:
 
 - Tentar unificar rota de done/undone task - Ok
 - Validações em cada rota
+  -- Adicionar rota para editar dueDate e category
 - Adicione categorias
 - Prazos para as tarefas
 - Testes Unitários

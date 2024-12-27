@@ -1,7 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from './dto/task.entity';
+import { Task } from './entity/task.entity';
 import { Repository } from 'typeorm';
+import { EditTaskDTO } from './dto/edit-task.dto';
 
 @Injectable()
 export class TodoListService {
@@ -101,5 +106,33 @@ export class TodoListService {
         message: 'Task deleted successfully',
       };
     }
+  }
+
+  async editTask(id: string, updatedData: EditTaskDTO) {
+    const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(updatedData.dueDate);
+
+    const task = await this.taskRepository.findOne({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (!task) {
+      throw new NotFoundException("Task doesn't exist");
+    }
+
+    if (updatedData.dueDate && !isValidFormat) {
+      throw new BadRequestException(
+        'Invalid dueDate format. Expected YYYY-MM-DD.',
+      );
+    }
+
+    Object.assign(task, updatedData);
+    const updatedTask = await this.taskRepository.save(task);
+
+    return {
+      message: 'Task updated successfully',
+      task: updatedTask,
+    };
   }
 }

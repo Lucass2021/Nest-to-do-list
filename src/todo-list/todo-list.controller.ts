@@ -6,8 +6,10 @@ import {
   Param,
   Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
+import { EditTaskDTO } from './dto/edit-task.dto';
 
 @Controller('/todo-list')
 export class TodoListController {
@@ -61,5 +63,11 @@ export class TodoListController {
   @Delete('/:id')
   deleteTask(@Param('id') id: string) {
     return this.TodoListService.deleteTask(id);
+  }
+
+  // - Editar uma tarefa
+  @Put('edit/:id')
+  editTask(@Param('id') id: string, @Body() editTaskDto: EditTaskDTO) {
+    return this.TodoListService.editTask(id, editTaskDto);
   }
 }
