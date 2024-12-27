@@ -40,12 +40,18 @@ export class TodoListController {
   }
 
   // - Atualizar o status (feito/não feito)
+  @Patch('task-status/:id')
+  updateTaskStatus(@Param('id') id: string) {
+    return this.TodoListService.updateTaskStatus(id);
+  }
+
+  // - Atualizar o status (feito)
   @Patch('done/:id')
   updateTaskStatusToDone(@Param('id') id: string) {
     return this.TodoListService.updateTaskStatusToDone(id);
   }
 
-  // - Atualizar o status (feito/não feito)
+  // - Atualizar o status (não feito)
   @Patch('undone/:id')
   updateTaskStatusToUndone(@Param('id') id: string) {
     return this.TodoListService.updateTaskStatusToUndone(id);

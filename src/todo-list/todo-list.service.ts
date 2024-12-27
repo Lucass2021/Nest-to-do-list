@@ -37,6 +37,25 @@ export class TodoListService {
     });
   }
 
+  async updateTaskStatus(id: string) {
+    const task = await this.taskRepository.findOne({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (!task.isDone) {
+      task.isDone = true;
+    } else {
+      task.isDone = false;
+    }
+
+    await this.taskRepository.save(task);
+    return {
+      message: 'Task updated successfully',
+    };
+  }
+
   async updateTaskStatusToDone(id: string) {
     const task = await this.taskRepository.findOne({
       where: {

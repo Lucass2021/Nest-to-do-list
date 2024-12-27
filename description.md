@@ -3,14 +3,15 @@
 
 Rotas:
 
-- Criar uma nova tarefa
-- Listar todas as tarefas
-- Atualizar o status (feito/não feito)
-- Deletar uma tarefa
+- Criar uma nova tarefa - Ok
+- Listar todas as tarefas - Ok
+- Atualizar o status (feito/não feito) - Ok
+- Deletar uma tarefa - Ok
 
 -- Extras:
 
-- Validações
+- Tentar unificar rota de done/undone task - Ok
+- Validações em cada rota
 - Adicione categorias
 - Prazos para as tarefas
 - Testes Unitários
