@@ -27,6 +27,10 @@ export class TodoListService {
       isDone: false,
     });
 
+    if (!title) {
+      throw new BadRequestException('Title is required');
+    }
+
     return await this.taskRepository.save(task);
   }
 
