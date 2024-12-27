@@ -32,13 +32,13 @@ export class TodoListController {
   // - Listar todas as tarefas
   @Get('/')
   findAll() {
-    return this.TodoListService.findAll();
+    return this.TodoListService.findAllTasks();
   }
 
   // - Listar uma tarefa
   @Get('/:id')
   findOne(@Param('id') id: string) {
-    return this.TodoListService.findOne(id);
+    return this.TodoListService.findOneTask(id);
   }
 
   // - Atualizar o status (feito/não feito)

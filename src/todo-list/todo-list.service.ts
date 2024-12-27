@@ -34,16 +34,34 @@ export class TodoListService {
     return await this.taskRepository.save(task);
   }
 
-  findAll() {
-    return this.taskRepository.find();
+  async findAllTasks() {
+    const tasks = await this.taskRepository.find();
+
+    if (tasks.length === 0) {
+      throw new NotFoundException('No tasks found');
+    }
+
+    return tasks;
   }
 
-  findOne(id: string) {
-    return this.taskRepository.findOne({
+  async findOneTask(id: string) {
+    const idNumber = Number(id);
+
+    if (isNaN(idNumber)) {
+      throw new BadRequestException('Invalid id, expected a number');
+    }
+
+    const task = await this.taskRepository.findOne({
       where: {
-        id: Number(id),
+        id: idNumber,
       },
     });
+
+    if (!task) {
+      throw new NotFoundException('Task not found');
+    }
+
+    return task;
   }
 
   async updateTaskStatus(id: string) {

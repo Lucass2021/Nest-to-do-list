@@ -12,7 +12,14 @@ Rotas:
 
 - Tentar unificar rota de done/undone task - Ok
 - Validações em cada rota
-  -- Adicionar rota para editar dueDate e category
+  -- Adicionar rota para editar dueDate e category - Ok
+  -- Validar possíveis erros de cada rota
+  -- Conferir validações
 - Adicione categorias
 - Prazos para as tarefas
 - Testes Unitários
+
+Docker:
+docker compose up -d
+docker-compose down
+docker volume rm to-do-list_pgdata
