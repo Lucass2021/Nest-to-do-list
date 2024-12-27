@@ -65,11 +65,7 @@ export class TodoListService {
   }
 
   async updateTaskStatus(id: string) {
-    const task = await this.taskRepository.findOne({
-      where: {
-        id: Number(id),
-      },
-    });
+    const task = await this.findOneTask(id);
 
     if (!task.isDone) {
       task.isDone = true;
@@ -80,15 +76,12 @@ export class TodoListService {
     await this.taskRepository.save(task);
     return {
       message: 'Task updated successfully',
+      task: task,
     };
   }
 
   async updateTaskStatusToDone(id: string) {
-    const task = await this.taskRepository.findOne({
-      where: {
-        id: Number(id),
-      },
-    });
+    const task = await this.findOneTask(id);
 
     if (!task.isDone) {
       task.isDone = true;
@@ -96,15 +89,12 @@ export class TodoListService {
     await this.taskRepository.save(task);
     return {
       message: 'Task updated successfully',
+      task: task,
     };
   }
 
   async updateTaskStatusToUndone(id: string) {
-    const task = await this.taskRepository.findOne({
-      where: {
-        id: Number(id),
-      },
-    });
+    const task = await this.findOneTask(id);
 
     if (task.isDone) {
       task.isDone = false;
@@ -112,36 +102,25 @@ export class TodoListService {
     await this.taskRepository.save(task);
     return {
       message: 'Task updated successfully',
+      task: task,
     };
   }
 
   async deleteTask(id: string) {
-    const task = await this.taskRepository.findOne({
-      where: {
-        id: Number(id),
-      },
-    });
+    const task = await this.findOneTask(id);
 
     if (task) {
       await this.taskRepository.delete(task);
       return {
         message: 'Task deleted successfully',
+        task: task,
       };
     }
   }
 
   async editTask(id: string, updatedData: EditTaskDTO) {
     const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(updatedData.dueDate);
-
-    const task = await this.taskRepository.findOne({
-      where: {
-        id: Number(id),
-      },
-    });
-
-    if (!task) {
-      throw new NotFoundException("Task doesn't exist");
-    }
+    const task = await this.findOneTask(id);
 
     if (updatedData.dueDate && !isValidFormat) {
       throw new BadRequestException(
