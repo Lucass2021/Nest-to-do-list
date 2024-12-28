@@ -11,15 +11,22 @@ Rotas:
 -- Extras:
 
 - Tentar unificar rota de done/undone task - Ok
-- Validações em cada rota
+- Validações em cada rota - Ok
   -- Adicionar rota para editar dueDate e category - Ok
   -- Validar possíveis erros de cada rota - Ok
   -- Conferir validações - Ok
+- Adicionar UUID para tasks - Ok
 - Adicione categorias
+  -- Criar novas categorias
+  -- Listar todas as categorias
+  -- Listar apenas uma categoria
+  -- Deletar uma categoria
+  -- Vincular categoria com task
 - Prazos para as tarefas
 - Incluir Swagger
 - Incluir Usuários
 - Testes Unitários
+- Aplicação com Prisma
 
 Docker:
 docker compose up -d

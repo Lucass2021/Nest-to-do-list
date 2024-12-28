@@ -40,15 +40,9 @@ export class TaskService {
   }
 
   async findOneTask(id: string) {
-    const idNumber = Number(id);
-
-    if (isNaN(idNumber)) {
-      throw new BadRequestException('Invalid id, expected a number');
-    }
-
     const task = await this.taskRepository.findOne({
       where: {
-        id: idNumber,
+        id: id,
       },
     });
 

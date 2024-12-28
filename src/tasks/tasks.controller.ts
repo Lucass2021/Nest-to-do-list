@@ -11,6 +11,7 @@ import {
 import { TaskService } from './tasks.service';
 import { EditTaskDTO } from './dto/edit-task.dto';
 import { CreateTaskDTO } from './dto/create-task.dto';
+import { TaskIdDTO } from './dto/task-id.dto';
 
 @Controller('/tasks')
 export class TasksController {
@@ -30,25 +31,25 @@ export class TasksController {
 
   // - Listar uma tarefa
   @Get('/:id')
-  findOne(@Param('id') id: string) {
-    return this.TaskService.findOneTask(id);
+  findOne(@Param() taskId: TaskIdDTO) {
+    return this.TaskService.findOneTask(taskId.id);
   }
 
   // - Atualizar o status (feito/não feito)
   @Patch('task-status/:id')
-  updateTaskStatus(@Param('id') id: string) {
-    return this.TaskService.updateTaskStatus(id);
+  updateTaskStatus(@Param() taskId: TaskIdDTO) {
+    return this.TaskService.updateTaskStatus(taskId.id);
   }
 
   // - Deletar uma tarefa
   @Delete('/:id')
-  deleteTask(@Param('id') id: string) {
-    return this.TaskService.deleteTask(id);
+  deleteTask(@Param() taskId: TaskIdDTO) {
+    return this.TaskService.deleteTask(taskId.id);
   }
 
   // - Editar uma tarefa
   @Put('edit/:id')
-  editTask(@Param('id') id: string, @Body() editTaskDto: EditTaskDTO) {
-    return this.TaskService.editTask(id, editTaskDto);
+  editTask(@Param() taskId: TaskIdDTO, @Body() editTaskDto: EditTaskDTO) {
+    return this.TaskService.editTask(taskId.id, editTaskDto);
   }
 }
