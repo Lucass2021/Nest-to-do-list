@@ -10,7 +10,7 @@ import { EditTaskDTO } from './dto/edit-task.dto';
 import { CreateTaskDTO } from './dto/create-task.dto';
 
 @Injectable()
-export class TodoListService {
+export class TaskService {
   constructor(
     @InjectRepository(Task)
     private readonly taskRepository: Repository<Task>,

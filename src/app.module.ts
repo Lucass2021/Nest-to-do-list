@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TodoListModule } from './todo-list/todo-list.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TasksModule } from './tasks/tasks.module';
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ dotenv.config();
       autoLoadEntities: true,
       synchronize: process.env.ENVIRONMENT === 'PRODUCTION' ? false : true,
     }),
-    TodoListModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
