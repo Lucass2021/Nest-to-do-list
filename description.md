@@ -13,10 +13,12 @@ Rotas:
 - Tentar unificar rota de done/undone task - Ok
 - Validações em cada rota
   -- Adicionar rota para editar dueDate e category - Ok
-  -- Validar possíveis erros de cada rota
-  -- Conferir validações
+  -- Validar possíveis erros de cada rota - Ok
+  -- Conferir validações - Ok
 - Adicione categorias
 - Prazos para as tarefas
+- Incluir Swagger
+- Incluir Usuários
 - Testes Unitários
 
 Docker:

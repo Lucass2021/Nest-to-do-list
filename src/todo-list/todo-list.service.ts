@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './entity/task.entity';
 import { Repository } from 'typeorm';
 import { EditTaskDTO } from './dto/edit-task.dto';
+import { CreateTaskDTO } from './dto/create-task.dto';
 
 @Injectable()
 export class TodoListService {
@@ -15,19 +16,13 @@ export class TodoListService {
     private readonly taskRepository: Repository<Task>,
   ) {}
 
-  async createNewItem(
-    title: string,
-    category?: string,
-    dueDate?: Date,
-  ): Promise<Task> {
+  async createNewItem(newTask: CreateTaskDTO): Promise<Task> {
     const task = this.taskRepository.create({
-      title,
-      category,
-      dueDate,
+      ...newTask,
       isDone: false,
     });
 
-    if (!title) {
+    if (!newTask.title) {
       throw new BadRequestException('Title is required');
     }
 
@@ -73,32 +68,6 @@ export class TodoListService {
       task.isDone = false;
     }
 
-    await this.taskRepository.save(task);
-    return {
-      message: 'Task updated successfully',
-      task: task,
-    };
-  }
-
-  async updateTaskStatusToDone(id: string) {
-    const task = await this.findOneTask(id);
-
-    if (!task.isDone) {
-      task.isDone = true;
-    }
-    await this.taskRepository.save(task);
-    return {
-      message: 'Task updated successfully',
-      task: task,
-    };
-  }
-
-  async updateTaskStatusToUndone(id: string) {
-    const task = await this.findOneTask(id);
-
-    if (task.isDone) {
-      task.isDone = false;
-    }
     await this.taskRepository.save(task);
     return {
       message: 'Task updated successfully',

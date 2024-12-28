@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 import { EditTaskDTO } from './dto/edit-task.dto';
+import { CreateTaskDTO } from './dto/create-task.dto';
 
 @Controller('/todo-list')
 export class TodoListController {
@@ -17,16 +18,8 @@ export class TodoListController {
 
   // - Criar uma nova tarefa
   @Post('/new-task')
-  async createNewItem(
-    @Body('title') title: string,
-    @Body('category') category: string,
-    @Body('dueDate') dueDate: string,
-  ) {
-    return this.TodoListService.createNewItem(
-      title,
-      category,
-      dueDate ? new Date(dueDate) : null,
-    );
+  async createNewItem(@Body() createTaskDto: CreateTaskDTO) {
+    return this.TodoListService.createNewItem(createTaskDto);
   }
 
   // - Listar todas as tarefas
@@ -45,18 +38,6 @@ export class TodoListController {
   @Patch('task-status/:id')
   updateTaskStatus(@Param('id') id: string) {
     return this.TodoListService.updateTaskStatus(id);
-  }
-
-  // - Atualizar o status (feito)
-  @Patch('done/:id')
-  updateTaskStatusToDone(@Param('id') id: string) {
-    return this.TodoListService.updateTaskStatusToDone(id);
-  }
-
-  // - Atualizar o status (não feito)
-  @Patch('undone/:id')
-  updateTaskStatusToUndone(@Param('id') id: string) {
-    return this.TodoListService.updateTaskStatusToUndone(id);
   }
 
   // - Deletar uma tarefa
