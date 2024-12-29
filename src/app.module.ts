@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
+import { CategoriesModule } from './categories/categories.module';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ dotenv.config();
       synchronize: process.env.ENVIRONMENT === 'PRODUCTION' ? false : true,
     }),
     TasksModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -17,14 +17,14 @@ export class TaskService {
   ) {}
 
   async createNewItem(newTask: CreateTaskDTO): Promise<Task> {
+    if (!newTask.title) {
+      throw new BadRequestException('Title is required');
+    }
+
     const task = this.taskRepository.create({
       ...newTask,
       isDone: false,
     });
-
-    if (!newTask.title) {
-      throw new BadRequestException('Title is required');
-    }
 
     return await this.taskRepository.save(task);
   }

@@ -17,11 +17,15 @@ Rotas:
   -- Conferir validações - Ok
 - Adicionar UUID para tasks - Ok
 - Adicione categorias
-  -- Criar novas categorias
-  -- Listar todas as categorias
+  -- Criar novas categorias - Ok
+  -- Listar todas as categorias - Ok
   -- Listar apenas uma categoria
+  -- Listar apenas categorias ativas
+  -- Listar categorias por data (createdAt e updatedAt)
   -- Deletar uma categoria
   -- Vincular categoria com task
+  -- Tornar categoria e dueDate obrigatórias
+  -- Adicionar ordenação de categorias e tasks
 - Prazos para as tarefas
 - Incluir Swagger
 - Incluir Usuários
