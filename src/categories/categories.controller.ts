@@ -20,8 +20,14 @@ export class CategoriesController {
   }
 
   // - Listar uma categoria
-  @Get('/:id')
+  @Get('find-id/:id')
   findOne(@Param() categoryId: CategoryIdDTO) {
     return this.CategoriesService.findOneCategory(categoryId.id);
+  }
+
+  // - Listar todas as categorias ativas
+  @Get('/active')
+  findAllActive() {
+    return this.CategoriesService.findAllActiveCategories();
   }
 }

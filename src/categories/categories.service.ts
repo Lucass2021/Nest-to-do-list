@@ -47,4 +47,18 @@ export class CategoriesService {
 
     return category;
   }
+
+  async findAllActiveCategories() {
+    const activeCategories = await this.categoryRepository.find({
+      where: {
+        isActive: true,
+      },
+    });
+
+    if (activeCategories.length === 0) {
+      throw new NotFoundException('No active categories found');
+    }
+
+    return activeCategories;
+  }
 }

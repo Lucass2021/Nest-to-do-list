@@ -30,7 +30,7 @@ export class TasksController {
   }
 
   // - Listar uma tarefa
-  @Get('/:id')
+  @Get('find-id/:id')
   findOne(@Param() taskId: TaskIdDTO) {
     return this.TaskService.findOneTask(taskId.id);
   }
