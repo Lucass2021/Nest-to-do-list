@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDTO } from './dto/create-category.dto';
+import { CategoryIdDTO } from './dto/category-id.dto';
 
 @Controller('/categories')
 export class CategoriesController {
@@ -13,9 +14,14 @@ export class CategoriesController {
   }
 
   // - Listar todas as categorias
-
   @Get('/')
   findAll() {
     return this.CategoriesService.findAllCategories();
+  }
+
+  // - Listar uma categoria
+  @Get('/:id')
+  findOne(@Param() categoryId: CategoryIdDTO) {
+    return this.CategoriesService.findOneCategory(categoryId.id);
   }
 }

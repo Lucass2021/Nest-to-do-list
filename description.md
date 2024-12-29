@@ -19,7 +19,7 @@ Rotas:
 - Adicione categorias
   -- Criar novas categorias - Ok
   -- Listar todas as categorias - Ok
-  -- Listar apenas uma categoria
+  -- Listar apenas uma categoria - Ok
   -- Listar apenas categorias ativas
   -- Listar categorias por data (createdAt e updatedAt)
   -- Deletar uma categoria
