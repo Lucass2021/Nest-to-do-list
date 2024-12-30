@@ -23,12 +23,15 @@ Rotas:
   -- Listar apenas categorias ativas - Ok
   -- Deletar uma categoria - Ok
   -- Edição de categoria - Ok
-  -- Atualizar o isActive
-  -- Listar categorias por data (createdAt e updatedAt)
-  -- Vincular categoria com task
-  -- Tornar categoria e dueDate obrigatórias
-  -- Adicionar ordenação de categorias e tasks
-  -- Listar todas as tasks por data (createdAt e updatedAt)
+  -- Atualizar o isActive - Ok
+- Verificar todo o fluxo de task e categorias e vinculo de categorias com tasks
+- Tornar categoria e dueDate obrigatórias? (Analisar fluxo)
+- Listar tasks por data (createdAt e updatedAt)
+- Listar categorias por data (createdAt e updatedAt)
+- Listar tasks por ordem alfabética (title)
+- Listar categorias por ordem alfabética (name)
+- Listar tasks por ordem de dueDate
+
 - Prazos para as tarefas
 - Incluir Swagger
 - Incluir Usuários

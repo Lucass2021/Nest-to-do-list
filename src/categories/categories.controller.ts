@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -38,6 +39,12 @@ export class CategoriesController {
   @Get('/active')
   findAllActive() {
     return this.CategoriesService.findAllActiveCategories();
+  }
+
+  // - Atualizar o status (ativo/não ativo)
+  @Patch('/status/:id')
+  updateCategoryStatus(@Param() categoryId: CategoryIdDTO) {
+    return this.CategoriesService.updateCategoryStatus(categoryId.id);
   }
 
   // - Deletar uma categoria

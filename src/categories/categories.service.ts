@@ -63,6 +63,22 @@ export class CategoriesService {
     return activeCategories;
   }
 
+  async updateCategoryStatus(id: string) {
+    const category = await this.findOneCategory(id);
+
+    if (!category.isActive) {
+      category.isActive = true;
+    } else {
+      category.isActive = false;
+    }
+
+    await this.categoryRepository.save(category);
+    return {
+      message: 'Category updated successfully',
+      task: category,
+    };
+  }
+
   async deleteCategory(id: string) {
     const category = await this.findOneCategory(id);
 

@@ -36,7 +36,7 @@ export class TasksController {
   }
 
   // - Atualizar o status (feito/não feito)
-  @Patch('task-status/:id')
+  @Patch('status/:id')
   updateTaskStatus(@Param() taskId: TaskIdDTO) {
     return this.TaskService.updateTaskStatus(taskId.id);
   }
