@@ -22,7 +22,8 @@ Rotas:
   -- Listar apenas uma categoria - Ok
   -- Listar apenas categorias ativas - Ok
   -- Deletar uma categoria - Ok
-  -- Edição de categoria
+  -- Edição de categoria - Ok
+  -- Atualizar o isActive
   -- Listar categorias por data (createdAt e updatedAt)
   -- Vincular categoria com task
   -- Tornar categoria e dueDate obrigatórias

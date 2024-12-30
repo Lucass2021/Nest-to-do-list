@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entity/category.entity';
 import { Repository } from 'typeorm';
 import { CreateCategoryDTO } from './dto/create-category.dto';
+import { EditCategoryDTO } from './dto/edit-category.dto';
 
 @Injectable()
 export class CategoriesService {
@@ -72,5 +73,17 @@ export class CategoriesService {
         category: category,
       };
     }
+  }
+
+  async editCategory(id: string, updatedData: EditCategoryDTO) {
+    const category = await this.findOneCategory(id);
+
+    Object.assign(category, updatedData);
+    const updatedTask = await this.categoryRepository.save(category);
+
+    return {
+      message: 'Task updated successfully',
+      category: updatedTask,
+    };
   }
 }
