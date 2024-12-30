@@ -13,7 +13,7 @@ export class Task {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ length: 255 })
   title: string;
 
   @Column({ default: false })

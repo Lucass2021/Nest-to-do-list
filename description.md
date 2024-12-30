@@ -25,7 +25,9 @@ Rotas:
   -- Edição de categoria - Ok
   -- Atualizar o isActive - Ok
 - Verificar todo o fluxo de task e categorias e vinculo de categorias com tasks
-- Tornar categoria e dueDate obrigatórias? (Analisar fluxo)
+- Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null)
+- Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null)
+- Adicionar a possibilidade de dueDate ser undefined, ou seja, sem prazo
 - Listar tasks por data (createdAt e updatedAt)
 - Listar categorias por data (createdAt e updatedAt)
 - Listar tasks por ordem alfabética (title)
@@ -41,4 +43,5 @@ Rotas:
 Docker:
 docker compose up -d
 docker-compose down
+docker volume ls
 docker volume rm to-do-list_pgdata

@@ -8,12 +8,14 @@ import { Task } from './entity/task.entity';
 import { Repository } from 'typeorm';
 import { EditTaskDTO } from './dto/edit-task.dto';
 import { CreateTaskDTO } from './dto/create-task.dto';
+import { CategoriesService } from 'src/categories/categories.service';
 
 @Injectable()
 export class TaskService {
   constructor(
     @InjectRepository(Task)
     private readonly taskRepository: Repository<Task>,
+    private readonly categoriesService: CategoriesService,
   ) {}
 
   async createNewItem(newTask: CreateTaskDTO): Promise<Task> {
@@ -21,9 +23,14 @@ export class TaskService {
       throw new BadRequestException('Title is required');
     }
 
+    const category = await this.categoriesService.findOneCategory(
+      newTask.category,
+    );
+
     const task = this.taskRepository.create({
       ...newTask,
       isDone: false,
+      category,
     });
 
     return await this.taskRepository.save(task);

@@ -1,5 +1,4 @@
 import { IsDateString, IsOptional, IsString } from 'class-validator';
-import { Category } from 'src/categories/entity/category.entity';
 
 export class CreateTaskDTO {
   @IsString()
@@ -7,7 +6,7 @@ export class CreateTaskDTO {
 
   @IsOptional()
   @IsString()
-  category?: Category;
+  category?: string;
 
   @IsOptional()
   @IsDateString()

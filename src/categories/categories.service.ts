@@ -8,6 +8,7 @@ import { Category } from './entity/category.entity';
 import { Repository } from 'typeorm';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { EditCategoryDTO } from './dto/edit-category.dto';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class CategoriesService {
@@ -36,6 +37,10 @@ export class CategoriesService {
   }
 
   async findOneCategory(id: string) {
+    if (!isUUID(id)) {
+      throw new NotFoundException('Category not found');
+    }
+
     const category = await this.categoryRepository.findOne({
       where: {
         id: id,
