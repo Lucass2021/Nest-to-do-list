@@ -73,7 +73,7 @@ export class TaskService {
     const task = await this.findOneTask(id);
 
     if (task) {
-      await this.taskRepository.delete(task);
+      await this.taskRepository.remove(task);
       return {
         message: 'Task deleted successfully',
         task: task,

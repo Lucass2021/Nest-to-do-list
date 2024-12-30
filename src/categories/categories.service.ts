@@ -61,4 +61,16 @@ export class CategoriesService {
 
     return activeCategories;
   }
+
+  async deleteCategory(id: string) {
+    const category = await this.findOneCategory(id);
+
+    if (category) {
+      await this.categoryRepository.remove(category);
+      return {
+        message: 'Category deleted successfully',
+        category: category,
+      };
+    }
+  }
 }

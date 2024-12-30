@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { CategoryIdDTO } from './dto/category-id.dto';
@@ -29,5 +29,11 @@ export class CategoriesController {
   @Get('/active')
   findAllActive() {
     return this.CategoriesService.findAllActiveCategories();
+  }
+
+  // - Deletar uma categoria
+  @Delete('/:id')
+  deleteCategory(@Param() categoryId: CategoryIdDTO) {
+    return this.CategoriesService.deleteCategory(categoryId.id);
   }
 }
