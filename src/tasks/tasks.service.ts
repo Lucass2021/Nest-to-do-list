@@ -37,7 +37,9 @@ export class TaskService {
   }
 
   async findAllTasks() {
-    const tasks = await this.taskRepository.find();
+    const tasks = await this.taskRepository.find({
+      relations: ['category'],
+    });
 
     if (tasks.length === 0) {
       throw new NotFoundException('No tasks found');
@@ -51,6 +53,7 @@ export class TaskService {
       where: {
         id: id,
       },
+      relations: ['category'],
     });
 
     if (!task) {

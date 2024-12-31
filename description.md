@@ -24,7 +24,9 @@ Rotas:
   -- Deletar uma categoria - Ok
   -- Edição de categoria - Ok
   -- Atualizar o isActive - Ok
-- Verificar todo o fluxo de task e categorias e vinculo de categorias com tasks
+- Verificar todo o fluxo de task e categorias e vinculo de categorias com tasks - Ok
+- Listar a categoria da task (Ajuste no findAll, findOne, updateStatus e Delete das tasks) - Ok
+- Listar todas as tasks vinculadas a uma categoria
 - Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null)
 - Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null)
 - Adicionar a possibilidade de dueDate ser undefined, ou seja, sem prazo
@@ -33,8 +35,8 @@ Rotas:
 - Listar tasks por ordem alfabética (title)
 - Listar categorias por ordem alfabética (name)
 - Listar tasks por ordem de dueDate
+- Tasks recorrentes
 
-- Prazos para as tarefas
 - Incluir Swagger
 - Incluir Usuários
 - Testes Unitários
