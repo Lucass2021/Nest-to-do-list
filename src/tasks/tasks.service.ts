@@ -23,9 +23,11 @@ export class TaskService {
       throw new BadRequestException('Title is required');
     }
 
-    const category = await this.categoriesService.findOneCategory(
-      newTask.category,
-    );
+    let category = null;
+
+    if (newTask.category) {
+      category = await this.categoriesService.findOneCategory(newTask.category);
+    }
 
     const task = this.taskRepository.create({
       ...newTask,

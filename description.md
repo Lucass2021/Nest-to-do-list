@@ -27,7 +27,7 @@ Rotas:
 - Verificar todo o fluxo de task e categorias e vinculo de categorias com tasks - Ok
 - Listar a categoria da task (Ajuste no findAll, findOne, updateStatus e Delete das tasks) - Ok
 - Listar todas as tasks vinculadas a uma categoria - Ok
-- Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null)
+- Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null) - Ok
 - Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null)
 - Adicionar a possibilidade de dueDate ser undefined, ou seja, sem prazo
 - Listar tasks por data (createdAt e updatedAt)
