@@ -45,6 +45,7 @@ export class CategoriesService {
       where: {
         id: id,
       },
+      relations: ['tasks'],
     });
 
     if (!category) {
