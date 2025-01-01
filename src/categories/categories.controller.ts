@@ -41,6 +41,12 @@ export class CategoriesController {
     return this.CategoriesService.findAllActiveCategories();
   }
 
+  // - Listar todas as categorias inativas
+  @Get('/inactive')
+  findAllInactive() {
+    return this.CategoriesService.findAllInactiveCategories();
+  }
+
   // - Atualizar o status (ativo/não ativo)
   @Patch('/status/:id')
   updateCategoryStatus(@Param() categoryId: CategoryIdDTO) {

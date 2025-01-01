@@ -69,6 +69,20 @@ export class CategoriesService {
     return activeCategories;
   }
 
+  async findAllInactiveCategories() {
+    const activeCategories = await this.categoryRepository.find({
+      where: {
+        isActive: false,
+      },
+    });
+
+    if (activeCategories.length === 0) {
+      throw new NotFoundException('No active categories found');
+    }
+
+    return activeCategories;
+  }
+
   async updateCategoryStatus(id: string) {
     const category = await this.findOneCategory(id);
 

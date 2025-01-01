@@ -29,9 +29,12 @@ Rotas:
 - Listar todas as tasks vinculadas a uma categoria - Ok
 - Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null) - Ok
 - Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null) - Ok
-- Adicionar status para tasks não concluídas (Testar atualização automatica e criar rota para isDone e overdue)
-- Listar tasks por data (createdAt e updatedAt)
-- Listar categorias por data (createdAt e updatedAt)
+- Adicionar status para tasks não concluídas (Testar atualização automatica e criar rota para isDone e overdue) - Ok
+- Listar todas as categorias com isActive (false) - Ok
+- Tornar category com name unico
+- Listar todas as tasks overdue
+- Listar todas as tasks com isDone (true ou false)
+- Listar tasks por data (dueDate)
 - Listar tasks por ordem alfabética (title)
 - Listar categorias por ordem alfabética (name)
 - Listar tasks por ordem de dueDate
