@@ -32,7 +32,7 @@ Rotas:
 - Adicionar status para tasks não concluídas (Testar atualização automatica e criar rota para isDone e overdue) - Ok
 - Listar todas as categorias com isActive (false) - Ok
 - Tornar category com name unico - Ok
-- Listar todas as tasks overdue
+- Listar todas as tasks overdue - Ok
 - Listar todas as tasks com isDone (true ou false)
 - Listar tasks por data (dueDate)
 - Listar tasks por ordem alfabética (title)

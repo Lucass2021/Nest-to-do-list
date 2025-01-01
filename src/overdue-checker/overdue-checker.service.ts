@@ -15,6 +15,7 @@ export class OverdueCheckerService {
   async checkOverdueTasks() {
     console.log('Verificando tarefas atrasadas...');
     const now = new Date();
+    // console.log('now', now);
 
     const overdueTasks = await this.taskRepository.find({
       where: { overdue: false },

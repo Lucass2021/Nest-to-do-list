@@ -35,6 +35,12 @@ export class TasksController {
     return this.TaskService.findOneTask(taskId.id);
   }
 
+  // - Lista todas as tarefas atrasadas (overdue)
+  @Get('/overdue')
+  checkOverdueTasks() {
+    return this.TaskService.checkOverdueTasks();
+  }
+
   // - Atualizar o status (feito/não feito)
   @Patch('status/:id')
   updateTaskStatus(@Param() taskId: TaskIdDTO) {

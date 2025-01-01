@@ -65,6 +65,19 @@ export class TaskService {
     return task;
   }
 
+  async checkOverdueTasks() {
+    const tasks = await this.taskRepository.find({
+      relations: ['category'],
+      where: { overdue: true },
+    });
+
+    if (tasks.length === 0) {
+      throw new NotFoundException('No tasks found');
+    }
+
+    return tasks;
+  }
+
   async updateTaskStatus(id: string) {
     const task = await this.findOneTask(id);
 
