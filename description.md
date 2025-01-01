@@ -28,14 +28,14 @@ Rotas:
 - Listar a categoria da task (Ajuste no findAll, findOne, updateStatus e Delete das tasks) - Ok
 - Listar todas as tasks vinculadas a uma categoria - Ok
 - Adicionar a possibilidade de vincular uma categoria APÓS criar uma task (Criação de tasks com category null) - Ok
-- Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null)
-- Adicionar a possibilidade de dueDate ser undefined, ou seja, sem prazo
+- Adicionar a possibilidade de vincular uma dueDate APÓS criar uma task (Criação de tasks com dueDate null) - Ok
+- Adicionar status para tasks não concluídas (Testar atualização automatica e criar rota para isDone e overdue)
 - Listar tasks por data (createdAt e updatedAt)
 - Listar categorias por data (createdAt e updatedAt)
 - Listar tasks por ordem alfabética (title)
 - Listar categorias por ordem alfabética (name)
 - Listar tasks por ordem de dueDate
-- Tasks recorrentes
+- Tasks recorrentes (Decidir o que fazer | Qual abordagem seguir)
 
 - Incluir Swagger
 - Incluir Usuários

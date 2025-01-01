@@ -19,6 +19,9 @@ export class Task {
   @Column({ default: false })
   isDone: boolean;
 
+  @Column({ default: false })
+  overdue: boolean;
+
   // @Column({ nullable: true })
   // category: string;
 

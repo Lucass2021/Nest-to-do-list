@@ -3,8 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TasksModule } from './tasks/tasks.module';
 import { CategoriesModule } from './categories/categories.module';
+import { OverdueCheckerModule } from './overdue-checker/overdue-checker.module';
+import { TasksModule } from './tasks/tasks.module';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ dotenv.config();
       autoLoadEntities: true,
       synchronize: process.env.ENVIRONMENT === 'PRODUCTION' ? false : true,
     }),
+    OverdueCheckerModule,
     TasksModule,
     CategoriesModule,
   ],
