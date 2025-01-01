@@ -22,6 +22,14 @@ export class CategoriesService {
       throw new BadRequestException('Name is required');
     }
 
+    const existingCategory = await this.categoryRepository.findOneBy({
+      name: newCategory.name,
+    });
+
+    if (existingCategory) {
+      throw new BadRequestException('Category already exists');
+    }
+
     const category = this.categoryRepository.create(newCategory);
     return await this.categoryRepository.save(category);
   }
