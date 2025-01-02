@@ -41,6 +41,7 @@ export class TaskService {
   async findAllTasks() {
     const tasks = await this.taskRepository.find({
       relations: ['category'],
+      order: { dueDate: 'ASC' },
     });
 
     if (tasks.length === 0) {
@@ -56,6 +57,7 @@ export class TaskService {
         id: id,
       },
       relations: ['category'],
+      order: { dueDate: 'ASC' },
     });
 
     if (!task) {
@@ -69,6 +71,7 @@ export class TaskService {
     const tasks = await this.taskRepository.find({
       relations: ['category'],
       where: { overdue: true },
+      order: { dueDate: 'ASC' },
     });
 
     if (tasks.length === 0) {
@@ -82,6 +85,7 @@ export class TaskService {
     const tasks = await this.taskRepository.find({
       where: { isDone: isDone },
       relations: ['category'],
+      order: { dueDate: 'ASC' },
     });
 
     if (tasks.length === 0) {
