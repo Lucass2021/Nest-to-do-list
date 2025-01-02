@@ -13,7 +13,7 @@ export class OverdueCheckerService {
 
   @Cron(CronExpression.EVERY_MINUTE)
   async checkOverdueTasks() {
-    console.log('Verificando tarefas atrasadas...');
+    // console.log('Verificando tarefas atrasadas...');
     const now = new Date();
     // console.log('now', now);
 

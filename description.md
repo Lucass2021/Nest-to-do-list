@@ -33,17 +33,16 @@ Rotas:
 - Listar todas as categorias com isActive (false) - Ok
 - Tornar category com name unico - Ok
 - Listar todas as tasks overdue - Ok
-- Listar todas as tasks com isDone (true ou false)
+- Listar todas as tasks com isDone (true ou false) - Ok
 - Listar tasks por data (dueDate)
 - Listar tasks por ordem alfabética (title)
 - Listar categorias por ordem alfabética (name)
-- Listar tasks por ordem de dueDate
 - Tasks recorrentes (Decidir o que fazer | Qual abordagem seguir)
 
-- Incluir Swagger
 - Incluir Usuários
-- Testes Unitários
+- Incluir Swagger
 - Aplicação com Prisma
+- Testes Unitários
 
 Docker:
 docker compose up -d

@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseBoolPipe,
   Patch,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { TaskService } from './tasks.service';
 import { EditTaskDTO } from './dto/edit-task.dto';
@@ -39,6 +41,12 @@ export class TasksController {
   @Get('/overdue')
   checkOverdueTasks() {
     return this.TaskService.checkOverdueTasks();
+  }
+
+  // - Lista todas as tarefas concluidas e não concluidas (isDone)
+  @Get('/done')
+  findAllDoneTasks(@Query('isDone', ParseBoolPipe) isDone: boolean) {
+    return this.TaskService.findAllDoneTasks(isDone);
   }
 
   // - Atualizar o status (feito/não feito)
