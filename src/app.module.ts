@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { OverdueCheckerModule } from './overdue-checker/overdue-checker.module';
 import { TasksModule } from './tasks/tasks.module';
+import { UsersModule } from './users/users.module';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ dotenv.config();
     OverdueCheckerModule,
     TasksModule,
     CategoriesModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

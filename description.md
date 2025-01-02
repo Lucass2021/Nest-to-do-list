@@ -38,6 +38,16 @@ Rotas:
 - Tasks recorrentes (Decidir o que fazer | Qual abordagem seguir)
 
 - Incluir Usuários
+  -- Criar novos usuários (admin)
+  -- Criar uma conta (user normal)
+  -- Listar todos os usuários (admin only)
+  -- Listar apenas um usuário (admin only)
+  -- Banir/excluir usuários (admin only)
+  -- Editar seu perfil (admin e user normal)
+  -- Vincular criação de tasks com users
+  -- Vincular criação de categories com users
+  -- Cada usuário deve ter suas próprias categorias e tasks
+
 - Incluir Swagger
 - Aplicação com Prisma
 - Testes Unitários
