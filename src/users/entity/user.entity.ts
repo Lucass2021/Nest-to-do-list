@@ -32,7 +32,7 @@ export class User {
   @Column({ length: 255, nullable: true })
   banReason?: string;
 
-  @Column({ length: 255, nullable: true })
+  @Column({ nullable: true })
   bannedAt?: Date;
 
   @Column({ nullable: true })

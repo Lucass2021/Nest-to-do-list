@@ -38,8 +38,8 @@ Rotas:
 - Tasks recorrentes (Decidir o que fazer | Qual abordagem seguir)
 
 - Incluir Usuários
+  -- Criar uma conta (user normal) - Ok
   -- Criar novos usuários (admin)
-  -- Criar uma conta (user normal)
   -- Listar todos os usuários (admin only)
   -- Listar apenas um usuário (admin only)
   -- Banir/excluir usuários (admin only)
