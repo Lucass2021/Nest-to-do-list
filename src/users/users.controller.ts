@@ -10,4 +10,9 @@ export class UsersController {
   createNewUser(@Body() createUserDTO: CreateUserDTO) {
     return this.usersService.createNewUser(createUserDTO);
   }
+
+  @Post('/new-admin')
+  createNewAdmin(@Body() createAdminDTO: CreateUserDTO) {
+    return this.usersService.createNewAdmin(createAdminDTO);
+  }
 }

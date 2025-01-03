@@ -39,6 +39,7 @@ Rotas:
 
 - Incluir Usuários
   -- Criar uma conta (user normal) - Ok
+  -- JWT e password encript
   -- Criar novos usuários (admin)
   -- Listar todos os usuários (admin only)
   -- Listar apenas um usuário (admin only)

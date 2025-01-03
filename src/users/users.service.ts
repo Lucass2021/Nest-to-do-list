@@ -23,4 +23,21 @@ export class UsersService {
     const user = this.userRepository.create(newUser);
     return await this.userRepository.save(user);
   }
+
+  async createNewAdmin(newAdmin: CreateUserDTO): Promise<User> {
+    const existingUser = await this.userRepository.findOneBy({
+      email: newAdmin.email,
+    });
+
+    if (existingUser) {
+      throw new BadRequestException('Admin already exists');
+    }
+
+    const user = this.userRepository.create({
+      ...newAdmin,
+      isAdmin: true,
+    });
+
+    return await this.userRepository.save(user);
+  }
 }
