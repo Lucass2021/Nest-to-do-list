@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { UserIdDTO } from './dto/user-id.dto';
+import { ChangePasswordDTO } from './dto/change-password.dto';
 
 @Controller('/users')
 export class UsersController {
@@ -42,4 +43,12 @@ export class UsersController {
   findAllAdmins() {
     return this.usersService.findAllAdmins();
   }
+
+  // Trocar senha do usuário
+  @Patch('/change-password')
+  changeUserPassword(@Body() changePasswordDTO: ChangePasswordDTO) {
+    return this.usersService.changeUserPassword(changePasswordDTO);
+  }
+
+  // Trocar foto de avatar do usuário
 }

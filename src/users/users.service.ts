@@ -7,6 +7,7 @@ import { User } from './entity/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { ChangePasswordDTO } from './dto/change-password.dto';
 
 @Injectable()
 export class UsersService {
@@ -95,5 +96,20 @@ export class UsersService {
     }
 
     return users;
+  }
+
+  async changeUserPassword(changePasswordDTO: ChangePasswordDTO) {
+    const user = await this.findOneUser(changePasswordDTO.id);
+
+    if (user.password !== changePasswordDTO.oldPassword) {
+      throw new BadRequestException('Invalid old password');
+    }
+
+    user.password = changePasswordDTO.newPassword;
+    await this.userRepository.save(user);
+    return {
+      message: 'User Password updated successfully',
+      task: user,
+    };
   }
 }
