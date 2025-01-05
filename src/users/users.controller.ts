@@ -30,4 +30,12 @@ export class UsersController {
   findOneUser(@Param() userId: UserIdDTO) {
     return this.usersService.findOneUser(userId.id);
   }
+
+  // - Listar um usuário por email
+  @Get('find-email/:email')
+  findUsersByEmail(@Param('email') email: string) {
+    return this.usersService.findUserByEmail(email);
+  }
+
+  // - Listar usuários admin
 }
