@@ -82,4 +82,18 @@ export class UsersService {
 
     return user;
   }
+
+  async findAllAdmins() {
+    const users = await this.userRepository.find({
+      where: {
+        isAdmin: true,
+      },
+    });
+
+    if (users.length === 0) {
+      throw new NotFoundException('No Users found');
+    }
+
+    return users;
+  }
 }
