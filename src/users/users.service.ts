@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { ChangePasswordDTO } from './dto/change-password.dto';
 import { ChangeAvatarDTO } from './dto/change-avatar.dto';
+import { BanUserDTO } from './dto/ban-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -121,6 +122,20 @@ export class UsersService {
     await this.userRepository.save(user);
     return {
       message: 'User Avatar updated successfully',
+      user: user,
+    };
+  }
+
+  async banUser(banUserDTO: BanUserDTO) {
+    const user = await this.findOneUser(banUserDTO.id);
+
+    user.isBanned = true;
+    user.banReason = banUserDTO.banReason;
+    user.bannedAt = new Date();
+    await this.userRepository.save(user);
+
+    return {
+      message: 'User Banned successfully',
       user: user,
     };
   }

@@ -1,9 +1,18 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { UserIdDTO } from './dto/user-id.dto';
 import { ChangePasswordDTO } from './dto/change-password.dto';
 import { ChangeAvatarDTO } from './dto/change-avatar.dto';
+import { BanUserDTO } from './dto/ban-user.dto';
 
 @Controller('/users')
 export class UsersController {
@@ -55,5 +64,11 @@ export class UsersController {
   @Patch('/change-avatar')
   changeUserAvatar(@Body() changeAvatarDTO: ChangeAvatarDTO) {
     return this.usersService.changeUserAvatar(changeAvatarDTO);
+  }
+
+  // Banimento de usuário
+  @Delete('/ban-user')
+  banUser(@Body() banUserDTO: BanUserDTO) {
+    return this.usersService.banUser(banUserDTO);
   }
 }
