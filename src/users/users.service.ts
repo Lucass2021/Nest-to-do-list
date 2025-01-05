@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { ChangePasswordDTO } from './dto/change-password.dto';
+import { ChangeAvatarDTO } from './dto/change-avatar.dto';
 
 @Injectable()
 export class UsersService {
@@ -109,7 +110,18 @@ export class UsersService {
     await this.userRepository.save(user);
     return {
       message: 'User Password updated successfully',
-      task: user,
+      user: user,
+    };
+  }
+
+  async changeUserAvatar(changeAvatarDTO: ChangeAvatarDTO) {
+    const user = await this.findOneUser(changeAvatarDTO.id);
+
+    user.avatar = changeAvatarDTO.newAvatar;
+    await this.userRepository.save(user);
+    return {
+      message: 'User Avatar updated successfully',
+      user: user,
     };
   }
 }

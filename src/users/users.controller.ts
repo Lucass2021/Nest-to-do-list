@@ -3,6 +3,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { UserIdDTO } from './dto/user-id.dto';
 import { ChangePasswordDTO } from './dto/change-password.dto';
+import { ChangeAvatarDTO } from './dto/change-avatar.dto';
 
 @Controller('/users')
 export class UsersController {
@@ -51,4 +52,8 @@ export class UsersController {
   }
 
   // Trocar foto de avatar do usuário
+  @Patch('/change-avatar')
+  changeUserAvatar(@Body() changeAvatarDTO: ChangeAvatarDTO) {
+    return this.usersService.changeUserAvatar(changeAvatarDTO);
+  }
 }
