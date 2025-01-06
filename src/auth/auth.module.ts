@@ -6,11 +6,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import * as dotenv from 'dotenv';
+import { UsersModule } from 'src/users/users.module';
 
 dotenv.config();
 
 @Module({
   imports: [
+    UsersModule,
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
