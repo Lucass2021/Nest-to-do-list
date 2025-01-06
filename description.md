@@ -40,11 +40,10 @@ Rotas:
 - Incluir Usuários
   -- Criar uma conta (user normal) - Ok
   -- JWT e password encript
-  -- Criar novos usuários (admin)
-  -- Listar todos os usuários (admin only)
-  -- Listar apenas um usuário (admin only)
-  -- Banir/excluir usuários (admin only)
-  -- Editar seu perfil (admin e user normal)
+  -- Criar novos usuários (admin) - Ok
+  -- Listar todos os usuários (admin only) - Ok (Adicionar validação JWT)
+  -- Listar apenas um usuário (admin only) - Ok (Adicionar validação JWT)
+  -- Banir/excluir usuários (admin only) - Ok (Adicionar validação JWT)
   -- Vincular criação de tasks com users
   -- Vincular criação de categories com users
   -- Cada usuário deve ter suas próprias categorias e tasks

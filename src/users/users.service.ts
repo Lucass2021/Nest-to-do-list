@@ -10,6 +10,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { ChangePasswordDTO } from './dto/change-password.dto';
 import { ChangeAvatarDTO } from './dto/change-avatar.dto';
 import { BanUserDTO } from './dto/ban-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -26,6 +27,10 @@ export class UsersService {
     if (existingUser) {
       throw new BadRequestException('User already exists');
     }
+
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(newUser.password, saltOrRounds);
+    newUser.password = hash;
 
     const user = this.userRepository.create(newUser);
     return await this.userRepository.save(user);
