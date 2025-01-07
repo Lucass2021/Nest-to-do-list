@@ -53,7 +53,7 @@ export class CategoriesService {
       where: {
         id: id,
       },
-      relations: ['tasks'],
+      relations: ['tasks', 'tasks.user'],
     });
 
     if (!category) {
