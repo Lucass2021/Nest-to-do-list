@@ -45,6 +45,10 @@ export class UsersService {
       throw new BadRequestException('Admin already exists');
     }
 
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(newAdmin.password, saltOrRounds);
+    newAdmin.password = hash;
+
     const user = this.userRepository.create({
       ...newAdmin,
       isAdmin: true,
@@ -108,11 +112,21 @@ export class UsersService {
   async changeUserPassword(changePasswordDTO: ChangePasswordDTO) {
     const user = await this.findOneUser(changePasswordDTO.id);
 
-    if (user.password !== changePasswordDTO.oldPassword) {
+    const isOldPasswordValid = await bcrypt.compare(
+      changePasswordDTO.oldPassword,
+      user.password,
+    );
+    if (!isOldPasswordValid) {
       throw new BadRequestException('Invalid old password');
     }
 
-    user.password = changePasswordDTO.newPassword;
+    const saltRounds = 10;
+    const hashedNewPassword = await bcrypt.hash(
+      changePasswordDTO.newPassword,
+      saltRounds,
+    );
+
+    user.password = hashedNewPassword;
     await this.userRepository.save(user);
     return {
       message: 'User Password updated successfully',

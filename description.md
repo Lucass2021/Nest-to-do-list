@@ -45,6 +45,8 @@ Rotas:
   -- Banir/excluir usuários (admin only) - Ok (Adicionar validação JWT)
   -- Vincular criação de tasks com users - Ok
   -- Aplicar validação do JWT nas rotas - Ok
+  -- Verificar validações de JWT e encript password nas rotas de user - Ok
+  -- Verificar validação de user admin
 
 - Incluir Swagger
 - Aplicação com Prisma
