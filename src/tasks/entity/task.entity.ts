@@ -1,4 +1,5 @@
 import { Category } from 'src/categories/entity/category.entity';
+import { User } from 'src/users/entity/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -22,15 +23,19 @@ export class Task {
   @Column({ default: false })
   overdue: boolean;
 
-  // @Column({ nullable: true })
-  // category: string;
-
   @ManyToOne(() => Category, (category) => category.tasks, {
     nullable: true,
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   category: Category;
+
+  @ManyToOne(() => User, (user) => user.tasks, {
+    nullable: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  user: User;
 
   @Column({ type: 'timestamp', nullable: true })
   dueDate: Date;

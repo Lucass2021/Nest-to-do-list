@@ -35,18 +35,16 @@ Rotas:
 - Listar todas as tasks overdue - Ok
 - Listar todas as tasks com isDone (true ou false) - Ok
 - Listar tasks por data (dueDate) - Ok
-- Tasks recorrentes (Decidir o que fazer | Qual abordagem seguir)
 
 - Incluir Usuários
   -- Criar uma conta (user normal) - Ok
-  -- JWT e password encript
+  -- JWT e password encript - Ok
   -- Criar novos usuários (admin) - Ok
   -- Listar todos os usuários (admin only) - Ok (Adicionar validação JWT)
   -- Listar apenas um usuário (admin only) - Ok (Adicionar validação JWT)
   -- Banir/excluir usuários (admin only) - Ok (Adicionar validação JWT)
-  -- Vincular criação de tasks com users
-  -- Vincular criação de categories com users
-  -- Cada usuário deve ter suas próprias categorias e tasks
+  -- Vincular criação de tasks com users - Ok
+  -- Aplicar validação do JWT nas rotas - Ok
 
 - Incluir Swagger
 - Aplicação com Prisma

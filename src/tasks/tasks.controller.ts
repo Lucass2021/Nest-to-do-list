@@ -9,20 +9,27 @@ import {
   Post,
   Put,
   Query,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { TaskService } from './tasks.service';
 import { EditTaskDTO } from './dto/edit-task.dto';
 import { CreateTaskDTO } from './dto/create-task.dto';
 import { TaskIdDTO } from './dto/task-id.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('/tasks')
+@UseGuards(JwtAuthGuard)
 export class TasksController {
   constructor(private readonly TaskService: TaskService) {}
 
   // - Criar uma nova tarefa
   @Post('/new-task')
-  async createNewItem(@Body() createTaskDto: CreateTaskDTO) {
-    return this.TaskService.createNewItem(createTaskDto);
+  async createNewItem(
+    @Body() createTaskDto: CreateTaskDTO,
+    @Req() req: Request,
+  ) {
+    return this.TaskService.createNewItem(createTaskDto, req);
   }
 
   // - Listar todas as tarefas

@@ -4,11 +4,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from './entity/task.entity';
-import { Repository } from 'typeorm';
-import { EditTaskDTO } from './dto/edit-task.dto';
-import { CreateTaskDTO } from './dto/create-task.dto';
 import { CategoriesService } from 'src/categories/categories.service';
+import { Repository } from 'typeorm';
+import { CreateTaskDTO } from './dto/create-task.dto';
+import { EditTaskDTO } from './dto/edit-task.dto';
+import { Task } from './entity/task.entity';
 
 @Injectable()
 export class TaskService {
@@ -18,7 +18,9 @@ export class TaskService {
     private readonly categoriesService: CategoriesService,
   ) {}
 
-  async createNewItem(newTask: CreateTaskDTO): Promise<Task> {
+  async createNewItem(newTask: CreateTaskDTO, req: any): Promise<Task> {
+    const user = req.user;
+
     if (!newTask.title) {
       throw new BadRequestException('Title is required');
     }
@@ -33,6 +35,7 @@ export class TaskService {
       ...newTask,
       isDone: false,
       category,
+      user,
     });
 
     return await this.taskRepository.save(task);
@@ -40,7 +43,7 @@ export class TaskService {
 
   async findAllTasks() {
     const tasks = await this.taskRepository.find({
-      relations: ['category'],
+      relations: ['category', 'user'],
       order: { dueDate: 'ASC' },
     });
 
@@ -56,7 +59,7 @@ export class TaskService {
       where: {
         id: id,
       },
-      relations: ['category'],
+      relations: ['category', 'user'],
       order: { dueDate: 'ASC' },
     });
 
@@ -69,7 +72,7 @@ export class TaskService {
 
   async checkOverdueTasks() {
     const tasks = await this.taskRepository.find({
-      relations: ['category'],
+      relations: ['category', 'user'],
       where: { overdue: true },
       order: { dueDate: 'ASC' },
     });
@@ -84,7 +87,7 @@ export class TaskService {
   async findAllDoneTasks(isDone: boolean) {
     const tasks = await this.taskRepository.find({
       where: { isDone: isDone },
-      relations: ['category'],
+      relations: ['category', 'user'],
       order: { dueDate: 'ASC' },
     });
 
