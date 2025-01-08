@@ -46,7 +46,9 @@ Rotas:
   -- Vincular criação de tasks com users - Ok
   -- Aplicar validação do JWT nas rotas - Ok
   -- Verificar validações de JWT e encript password nas rotas de user - Ok
-  -- Verificar validação de user admin
+  -- Verificar validação de user admin - Ok
+  -- Tornar um user admin - Ok
+  -- Mensagem de banimento ao logar
 
 - Incluir Swagger
 - Aplicação com Prisma

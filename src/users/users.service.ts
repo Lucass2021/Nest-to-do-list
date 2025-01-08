@@ -158,4 +158,16 @@ export class UsersService {
       user: user,
     };
   }
+
+  async makeUserAdmin(id: string) {
+    const user = await this.findOneUser(id);
+
+    user.isAdmin = true;
+    await this.userRepository.save(user);
+
+    return {
+      message: 'User made admin successfully',
+      user: user,
+    };
+  }
 }

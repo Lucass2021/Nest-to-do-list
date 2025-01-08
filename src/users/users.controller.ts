@@ -80,4 +80,11 @@ export class UsersController {
   banUser(@Body() banUserDTO: BanUserDTO) {
     return this.usersService.banUser(banUserDTO);
   }
+
+  // Tornar usuario admin
+  @Patch('/make-admin/:id')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  makeUserAdmin(@Param() userId: UserIdDTO) {
+    return this.usersService.makeUserAdmin(userId.id);
+  }
 }
