@@ -23,7 +23,7 @@ export class AuthService {
       return null;
     }
 
-    const { id, email: userEmail } = findUser;
-    return this.jwtService.sign({ id, userEmail });
+    const { id, email: userEmail, isAdmin } = findUser;
+    return this.jwtService.sign({ id, userEmail, isAdmin });
   }
 }
