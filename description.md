@@ -48,7 +48,7 @@ Rotas:
   -- Verificar validações de JWT e encript password nas rotas de user - Ok
   -- Verificar validação de user admin - Ok
   -- Tornar um user admin - Ok
-  -- Mensagem de banimento ao logar
+  -- Mensagem de banimento ao logar - Ok
 
 - Incluir Swagger
 - Aplicação com Prisma

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { AuthPayloadDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
+import { Request } from 'express';
+import { UsersService } from 'src/users/users.service';
+import { AuthPayloadDto } from './dto/auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -10,6 +11,21 @@ export class AuthService {
     private jwtService: JwtService,
     private readonly usersService: UsersService,
   ) {}
+
+  async login(req: Request) {
+    const loginEmail = req.body.email;
+    const findUserByEmail = await this.usersService.findUserByEmail(loginEmail);
+    console.log(findUserByEmail);
+
+    if (findUserByEmail.isBanned) {
+      return {
+        message: findUserByEmail.banReason,
+        bannedAt: findUserByEmail.bannedAt,
+      };
+    }
+
+    return req.user;
+  }
 
   async validateUser({ email, password }: AuthPayloadDto) {
     const findUser = await this.usersService.findUserByEmail(email);
