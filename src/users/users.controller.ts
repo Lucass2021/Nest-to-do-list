@@ -16,9 +16,10 @@ import { ChangeAvatarDTO } from './dto/change-avatar.dto';
 import { BanUserDTO } from './dto/ban-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { AdminGuard } from './guards/admin.guard';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('/users')
+@ApiTags('Users')
 @ApiBearerAuth()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
