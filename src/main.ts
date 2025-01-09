@@ -13,7 +13,7 @@ async function bootstrap() {
     .setTitle('To-do List')
     .setDescription('To-do List API')
     .setVersion('1.0')
-    .addTag('to-do')
+    .addBearerAuth()
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
