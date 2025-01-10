@@ -126,7 +126,7 @@ export class CategoriesService {
     const updatedTask = await this.categoryRepository.save(category);
 
     return {
-      message: 'Task updated successfully',
+      message: 'Category updated successfully',
       category: updatedTask,
     };
   }

@@ -14,58 +14,121 @@ import { CreateCategoryDTO } from './dto/create-category.dto';
 import { CategoryIdDTO } from './dto/category-id.dto';
 import { EditCategoryDTO } from './dto/edit-category.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @Controller('/categories')
+@ApiTags('Categories')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 export class CategoriesController {
   constructor(private readonly CategoriesService: CategoriesService) {}
 
-  // - Criar uma nova categoria
   @Post('/new-category')
+  @ApiOperation({
+    summary: 'Creates a new category',
+    description:
+      'Endpoint to create a new category. Requires authentication with a valid JWT token.',
+  })
   createNewCategory(@Body() createCategoryDTO: CreateCategoryDTO) {
     return this.CategoriesService.createNewCategory(createCategoryDTO);
   }
 
-  // - Listar todas as categorias
   @Get('/')
+  @ApiOperation({
+    summary: 'List all categories',
+    description:
+      'Endpoint to list all categories. Requires authentication with a valid JWT token.',
+  })
   findAll() {
     return this.CategoriesService.findAllCategories();
   }
 
-  // - Listar uma categoria
   @Get('find-id/:id')
+  @ApiOperation({
+    summary: 'List a specific category',
+    description:
+      'Endpoint to list a specific category. Requires authentication with a valid JWT token.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   findOne(@Param() categoryId: CategoryIdDTO) {
     return this.CategoriesService.findOneCategory(categoryId.id);
   }
 
-  // - Listar todas as categorias ativas
   @Get('/active')
+  @ApiOperation({
+    summary: 'List all active categories',
+    description:
+      'Endpoint to list all active categories. Requires authentication with a valid JWT token.',
+  })
   findAllActive() {
     return this.CategoriesService.findAllActiveCategories();
   }
 
-  // - Listar todas as categorias inativas
   @Get('/inactive')
+  @Get('/active')
+  @ApiOperation({
+    summary: 'List all inactive categories',
+    description:
+      'Endpoint to list all inactive categories. Requires authentication with a valid JWT token.',
+  })
   findAllInactive() {
     return this.CategoriesService.findAllInactiveCategories();
   }
 
-  // - Atualizar o status (ativo/não ativo)
   @Patch('/status/:id')
+  @ApiOperation({
+    summary: 'Update category status',
+    description:
+      'Endpoint to update category status. Requires authentication with a valid JWT token.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   updateCategoryStatus(@Param() categoryId: CategoryIdDTO) {
     return this.CategoriesService.updateCategoryStatus(categoryId.id);
   }
 
-  // - Deletar uma categoria
   @Delete('/:id')
+  @ApiOperation({
+    summary: 'Delete a category',
+    description:
+      'Endpoint to delete a category. Requires authentication with a valid JWT token.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   deleteCategory(@Param() categoryId: CategoryIdDTO) {
     return this.CategoriesService.deleteCategory(categoryId.id);
   }
 
-  // - Editar uma tarefa
   @Put('edit/:id')
+  @ApiOperation({
+    summary: 'Edit a category',
+    description:
+      'Endpoint to edit a category. Requires authentication with a valid JWT token.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   editCategory(
     @Param() categoryId: CategoryIdDTO,
     @Body() editCategoryDto: EditCategoryDTO,
