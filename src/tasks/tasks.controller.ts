@@ -21,6 +21,7 @@ import {
   ApiBearerAuth,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 
@@ -69,32 +70,71 @@ export class TasksController {
     return this.TaskService.findOneTask(taskId.id);
   }
 
-  // - Lista todas as tarefas atrasadas (overdue)
   @Get('/overdue')
+  @ApiOperation({
+    summary: 'List all overdue tasks',
+    description: 'Endpoint to list all overdue tasks.',
+  })
   checkOverdueTasks() {
     return this.TaskService.checkOverdueTasks();
   }
 
-  // - Lista todas as tarefas concluidas e não concluidas (isDone)
   @Get('/done')
+  @ApiOperation({
+    summary: 'List all tasks related to done status',
+    description: 'Endpoint to list all tasks related to done status.',
+  })
+  @ApiQuery({
+    name: 'isDone',
+    description: 'Add true or false',
+    required: true,
+    type: String,
+  })
   findAllDoneTasks(@Query('isDone', ParseBoolPipe) isDone: boolean) {
     return this.TaskService.findAllDoneTasks(isDone);
   }
 
-  // - Atualizar o status (feito/não feito)
   @Patch('status/:id')
+  @ApiOperation({
+    summary: 'Update the status of a task',
+    description: 'Endpoint to update the status of a task.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   updateTaskStatus(@Param() taskId: TaskIdDTO) {
     return this.TaskService.updateTaskStatus(taskId.id);
   }
 
-  // - Deletar uma tarefa
   @Delete('/:id')
+  @ApiOperation({
+    summary: 'Delete a task',
+    description: 'Endpoint to delete a task.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   deleteTask(@Param() taskId: TaskIdDTO) {
     return this.TaskService.deleteTask(taskId.id);
   }
 
-  // - Editar uma tarefa
   @Put('edit/:id')
+  @ApiOperation({
+    summary: 'Edit a task',
+    description: 'Endpoint to edit a task.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'The unique identifier for the task (UUID).',
+    required: true,
+    type: String,
+  })
   editTask(@Param() taskId: TaskIdDTO, @Body() editTaskDto: EditTaskDTO) {
     return this.TaskService.editTask(taskId.id, editTaskDto);
   }
