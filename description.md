@@ -50,11 +50,12 @@ Rotas:
   -- Tornar um user admin - Ok
   -- Mensagem de banimento ao logar - Ok
 
-- Incluir Swagger
-- Substituir rota active e inactive no categories por padrão usado via query params no tasks
+- Incluir Swagger - Ok
+- Substituir rota active e inactive no categories por padrão usado via query params no tasks - Ok
 - Implementar lastLoginAt
 - Aplicação com Prisma
 - Testes Unitários
+- Verificar se todo o conteúdo está em inglês (código, mensagens de erro, consoles.log....)
 
 Docker:
 docker compose up -d

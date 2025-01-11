@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseBoolPipe,
   Patch,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
@@ -18,6 +20,7 @@ import {
   ApiBearerAuth,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 
@@ -67,22 +70,16 @@ export class CategoriesController {
   @Get('/active')
   @ApiOperation({
     summary: 'List all active categories',
-    description:
-      'Endpoint to list all active categories. Requires authentication with a valid JWT token.',
+    description: 'Endpoint to list all categories related to isActive status.',
   })
-  findAllActive() {
-    return this.CategoriesService.findAllActiveCategories();
-  }
-
-  @Get('/inactive')
-  @Get('/active')
-  @ApiOperation({
-    summary: 'List all inactive categories',
-    description:
-      'Endpoint to list all inactive categories. Requires authentication with a valid JWT token.',
+  @ApiQuery({
+    name: 'isActive',
+    description: 'Add true or false',
+    required: true,
+    type: String,
   })
-  findAllInactive() {
-    return this.CategoriesService.findAllInactiveCategories();
+  findAllActiveCategories(@Query('isActive', ParseBoolPipe) isActive: boolean) {
+    return this.CategoriesService.findAllActiveCategories(isActive);
   }
 
   @Patch('/status/:id')
