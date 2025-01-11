@@ -52,6 +52,7 @@ Rotas:
 
 - Incluir Swagger
 - Substituir rota active e inactive no categories por padrão usado via query params no tasks
+- Implementar lastLoginAt
 - Aplicação com Prisma
 - Testes Unitários
 

@@ -15,7 +15,6 @@ export class AuthService {
   async login(req: Request) {
     const loginEmail = req.body.email;
     const findUserByEmail = await this.usersService.findUserByEmail(loginEmail);
-    console.log(findUserByEmail);
 
     if (findUserByEmail.isBanned) {
       return {

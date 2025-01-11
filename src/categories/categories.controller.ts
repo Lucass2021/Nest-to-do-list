@@ -50,7 +50,7 @@ export class CategoriesController {
 
   @Get('find-id/:id')
   @ApiOperation({
-    summary: 'List a specific category',
+    summary: 'List a specific category by id',
     description:
       'Endpoint to list a specific category. Requires authentication with a valid JWT token.',
   })
