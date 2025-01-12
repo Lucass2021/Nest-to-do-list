@@ -52,7 +52,7 @@ Rotas:
 
 - Incluir Swagger - Ok
 - Substituir rota active e inactive no categories por padrão usado via query params no tasks - Ok
-- Implementar lastLoginAt
+- Implementar lastLoginAt - Ok
 - Aplicação com Prisma
 - Testes Unitários
 - Verificar se todo o conteúdo está em inglês (código, mensagens de erro, consoles.log....)

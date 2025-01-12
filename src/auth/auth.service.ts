@@ -4,12 +4,17 @@ import * as bcrypt from 'bcrypt';
 import { Request } from 'express';
 import { UsersService } from 'src/users/users.service';
 import { AuthPayloadDto } from './dto/auth.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entity/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
     private jwtService: JwtService,
     private readonly usersService: UsersService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async login(req: Request) {
@@ -22,6 +27,9 @@ export class AuthService {
         bannedAt: findUserByEmail.bannedAt,
       };
     }
+
+    findUserByEmail.lastLoginAt = new Date();
+    await this.userRepository.save(findUserByEmail);
 
     return req.user;
   }
