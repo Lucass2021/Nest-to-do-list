@@ -1,22 +1,25 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { User } from './entity/user.entity';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDTO } from './dto/create-user.dto';
-import { ChangePasswordDTO } from './dto/change-password.dto';
-import { ChangeAvatarDTO } from './dto/change-avatar.dto';
-import { BanUserDTO } from './dto/ban-user.dto';
 import * as bcrypt from 'bcrypt';
+import { IRepository } from 'src/common/repositories/repository.interface';
+import { BanUserDTO } from './dto/ban-user.dto';
+import { ChangeAvatarDTO } from './dto/change-avatar.dto';
+import { ChangePasswordDTO } from './dto/change-password.dto';
+import { CreateUserDTO } from './dto/create-user.dto';
+import { User } from './entity/user.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    // @InjectRepository(User)
+    // private readonly userRepository: Repository<User>,
+
+    @Inject('USER_REPOSITORY')
+    private readonly userRepository: IRepository<User>,
   ) {}
 
   async createNewUser(newUser: CreateUserDTO): Promise<User> {
@@ -32,7 +35,7 @@ export class UsersService {
     const hash = await bcrypt.hash(newUser.password, saltOrRounds);
     newUser.password = hash;
 
-    const user = this.userRepository.create(newUser);
+    const user = await this.userRepository.create(newUser);
     return await this.userRepository.save(user);
   }
 
@@ -49,7 +52,7 @@ export class UsersService {
     const hash = await bcrypt.hash(newAdmin.password, saltOrRounds);
     newAdmin.password = hash;
 
-    const user = this.userRepository.create({
+    const user = await this.userRepository.create({
       ...newAdmin,
       isAdmin: true,
     });

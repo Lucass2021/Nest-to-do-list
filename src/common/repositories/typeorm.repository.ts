@@ -31,4 +31,12 @@ export class TypeOrmRepository<T> implements IRepository<T> {
   async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }
+
+  async save(entity: DeepPartial<T>): Promise<T> {
+    return this.repository.save(entity);
+  }
+
+  async findOneBy(options: any): Promise<T | null> {
+    return this.repository.findOneBy(options);
+  }
 }

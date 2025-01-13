@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import * as dotenv from 'dotenv';
+import { REPOSITORY_TOKEN } from 'src/common/repositories/repository.interface';
+import { DatabaseModule } from 'src/database/database.module';
+import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import * as dotenv from 'dotenv';
-import { UsersModule } from 'src/users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/users/entity/user.entity';
+import { LocalStrategy } from './strategies/local.strategy';
 
 dotenv.config();
 
@@ -20,9 +20,19 @@ dotenv.config();
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
-    TypeOrmModule.forFeature([User]),
+    DatabaseModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    {
+      provide: 'USER_REPOSITORY',
+      useExisting: REPOSITORY_TOKEN,
+      inject: [REPOSITORY_TOKEN],
+    },
+  ],
+  exports: [AuthService],
 })
 export class AuthModule {}

@@ -7,6 +7,7 @@ import { TypeOrmRepository } from '../common/repositories/typeorm.repository';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 dotenv.config();
+console.log('process.env.USE_PRISMA', process.env.USE_PRISMA);
 
 @Module({
   imports: [
@@ -25,10 +26,7 @@ dotenv.config();
   providers: [
     {
       provide: REPOSITORY_TOKEN,
-      useClass:
-        process.env.USE_PRISMA === 'true'
-          ? PrismaRepository
-          : TypeOrmRepository,
+      useClass: process.env.USE_PRISMA ? PrismaRepository : TypeOrmRepository,
     },
   ],
   exports: [REPOSITORY_TOKEN],

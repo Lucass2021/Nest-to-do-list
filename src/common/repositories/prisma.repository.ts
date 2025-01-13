@@ -30,4 +30,12 @@ export class PrismaRepository<T> implements IRepository<T> {
   async delete(id: number): Promise<void> {
     await this.model.delete({ where: { id } });
   }
+
+  async save(entity: Partial<T>): Promise<T> {
+    return this.model.create({ data: entity });
+  }
+
+  async findOneBy(options: any): Promise<T | null> {
+    return this.model.findFirst({ where: options });
+  }
 }

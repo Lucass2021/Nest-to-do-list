@@ -8,4 +8,6 @@ export interface IRepository<T> {
   create(entity: Partial<T> | DeepPartial<T>): Promise<T>;
   update(id: number, entity: Partial<T> | DeepPartial<T>): Promise<T>;
   delete(id: number): Promise<void>;
+  save(entity: Partial<T> | DeepPartial<T>): Promise<T>;
+  findOneBy(options: any): Promise<T | null>;
 }
