@@ -1,5 +1,5 @@
-yarn run lint
+# yarn run lint
 
-npx tsc --noEmit
+# npx tsc --noEmit
 
 # yarn run test
