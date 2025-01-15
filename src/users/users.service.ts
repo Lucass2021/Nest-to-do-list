@@ -23,8 +23,9 @@ export class UsersService {
   ) {}
 
   async createNewUser(newUser: CreateUserDTO): Promise<User> {
-    const existingUser = await this.userRepository.findOneBy({
-      email: newUser.email,
+    console.log('aqui');
+    const existingUser = await this.userRepository.findOne({
+      where: { email: newUser.email },
     });
 
     if (existingUser) {
@@ -71,11 +72,7 @@ export class UsersService {
   }
 
   async findOneUser(id: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        id: id,
-      },
-    });
+    const user = await this.userRepository.findOne({ id });
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -85,11 +82,7 @@ export class UsersService {
   }
 
   async findUserByEmail(email: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        email: email,
-      },
-    });
+    const user = await this.userRepository.findOne({ email });
 
     if (!user) {
       throw new NotFoundException('User not found');

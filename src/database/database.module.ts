@@ -5,9 +5,11 @@ import { PrismaRepository } from '../common/repositories/prisma.repository';
 import { REPOSITORY_TOKEN } from '../common/repositories/repository.interface';
 import { TypeOrmRepository } from '../common/repositories/typeorm.repository';
 import { PrismaModule } from 'src/prisma/prisma.module';
+import { User } from 'src/users/entity/user.entity';
 
 dotenv.config();
-console.log('process.env.USE_PRISMA', process.env.USE_PRISMA);
+const isPrisma = process.env.USE_PRISMA === 'true';
+console.log('isPrisma', isPrisma);
 
 @Module({
   imports: [
@@ -18,15 +20,21 @@ console.log('process.env.USE_PRISMA', process.env.USE_PRISMA);
       username: 'postgres',
       password: 'postgres',
       database: 'todo_db',
+      entities: [User],
       autoLoadEntities: true,
       synchronize: process.env.ENVIRONMENT === 'PRODUCTION' ? false : true,
     }),
+    TypeOrmModule.forFeature([User]),
     PrismaModule,
   ],
   providers: [
     {
       provide: REPOSITORY_TOKEN,
-      useClass: process.env.USE_PRISMA ? PrismaRepository : TypeOrmRepository,
+      useClass: isPrisma ? PrismaRepository : TypeOrmRepository,
+    },
+    {
+      provide: 'USER_REPOSITORY',
+      useExisting: REPOSITORY_TOKEN,
     },
   ],
   exports: [REPOSITORY_TOKEN],

@@ -11,12 +11,12 @@ export class PrismaRepository<T> implements IRepository<T> {
     return (this.prisma as any)[this.modelName];
   }
 
-  async findAll(): Promise<T[]> {
-    return this.model.findMany();
+  async find(options?: any): Promise<T[]> {
+    return this.model.findMany(options);
   }
 
-  async findOne(id: number): Promise<T | null> {
-    return this.model.findUnique({ where: { id } });
+  async findOne(options: any): Promise<T | null> {
+    return this.model.findFirst({ where: options });
   }
 
   async create(entity: Partial<T>): Promise<T> {

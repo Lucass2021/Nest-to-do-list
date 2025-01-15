@@ -8,12 +8,13 @@ export class TypeOrmRepository<T> implements IRepository<T> {
     this.repository = repository;
   }
 
-  async findAll(): Promise<T[]> {
-    return this.repository.find();
+  async find(options?: any): Promise<T[]> {
+    return this.repository.find(options);
   }
 
-  async findOne(id: number): Promise<T | null> {
-    return this.repository.findOneBy({ id } as any);
+  async findOne(options: any): Promise<T | null> {
+    // Why undefined?
+    return this.repository.findOne(options);
   }
 
   async create(entity: DeepPartial<T>): Promise<T> {
